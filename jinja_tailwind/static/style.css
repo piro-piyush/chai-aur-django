@@ -1,0 +1,86 @@
+/* Chai theme variables */
+:root {
+    --chai-bg: #fffaf3;
+    --chai-card: #ffffff;
+    --chai-primary: #92400e;
+    /* tea brown */
+    --chai-accent: #f59e0b;
+    /* warm amber */
+    --chai-text: #1f2937;
+    --chai-muted: #6b7280;
+    --chai-border: #f3e8d6;
+}
+
+/* Section */
+.chai-section {
+    max-width: 720px;
+    margin: 2rem auto;
+    padding: 2rem;
+    background: var(--chai-bg);
+    border-radius: 16px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+}
+
+/* Title */
+.page-title {
+    font-size: 2.4rem;
+    font-weight: 700;
+    color: var(--chai-primary);
+    margin-bottom: 0.4rem;
+}
+
+/* Description */
+.page-description {
+    font-size: 1rem;
+    color: var(--chai-muted);
+    margin-bottom: 2rem;
+}
+
+/* List */
+.chai-list {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+/* List item (card style) */
+.chai-list li {
+    background: var(--chai-card);
+    padding: 1rem 1.25rem;
+    margin-bottom: 1rem;
+    border-radius: 14px;
+    border: 1px solid var(--chai-border);
+    font-weight: 500;
+    color: var(--chai-text);
+
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    transition: all 0.25s ease;
+}
+
+/* Hover effect */
+.chai-list li:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 8px 20px rgba(146, 64, 14, 0.15);
+    border-color: var(--chai-accent);
+}
+
+/* Optional emoji badge */
+.chai-list li::after {
+    content: "☕";
+    font-size: 1.1rem;
+    opacity: 0.6;
+}
+
+/* Responsive */
+@media (max-width: 640px) {
+    .chai-section {
+        padding: 1.5rem;
+    }
+
+    .page-title {
+        font-size: 2rem;
+    }
+}

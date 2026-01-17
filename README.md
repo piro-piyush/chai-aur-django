@@ -1,16 +1,35 @@
 # Chai Aur Django ☕🐍
 
-A beginner-friendly Django project setup guide covering environment setup, project initialization, app creation, and daily-use migration commands. Perfect for learning Django the right way.
+A beginner-friendly Django project setup guide covering environment setup, project initialization, app creation, Tailwind CSS integration, and daily-use migration commands.
 
 ---
 
-## 📌 Prerequisites
+## 📝 Topics Covered
+
+1. [Prerequisites](#1-prerequisites)
+2. [Project Initialization](#2-project-initialization)
+3. [Install Dependencies](#3-install-dependencies)
+4. [Create Django Project](#4-create-django-project)
+5. [Create Django App](#5-create-django-app)
+6. [Register App](#6-register-app)
+7. [Run Development Server](#7-run-development-server)
+8. [Tailwind CSS Setup](#8-tailwind-css-setup)
+9. [Enable Admin Panel](#9-enable-admin-panel)
+10. [Migration Basics](#10-migration-basics)
+11. [Common Commands Cheat Sheet](#11-common-commands-cheat-sheet)
+12. [Next Steps](#12-next-steps)
+13. [Credits](#13-credits)
+
+---
+
+## 📌 1. Prerequisites {#1-prerequisites}
 
 Make sure you have the following installed:
 
 * Python 3.10+
 * pip (comes with Python)
 * Virtual environment support
+* Node.js & npm (for Tailwind with Node.js)
 
 Check Python version:
 
@@ -20,15 +39,15 @@ python --version
 
 ---
 
-## 🚀 Project Initialization
+## 🚀 2. Project Initialization {#2-project-initialization}
 
-### 1️⃣ Create Virtual Environment
+### 2.1 Create Virtual Environment
 
 ```bash
 python -m venv .venv
 ```
 
-### 2️⃣ Activate Virtual Environment
+### 2.2 Activate Virtual Environment
 
 **Windows**
 
@@ -46,27 +65,27 @@ source .venv/bin/activate
 
 ---
 
-## 📦 Install Dependencies
+## 📦 3. Install Dependencies {#3-install-dependencies}
 
-### Install Django
+### 3.1 Install Django
 
 ```bash
 pip install django
 ```
 
-### Check Django Version
+### 3.2 Check Django Version
 
 ```bash
 django-admin --version
 ```
 
-### Save Installed Packages
+### 3.3 Save Installed Packages
 
 ```bash
 pip freeze > requirements.txt
 ```
 
-### Install From Requirements File
+### 3.4 Install From Requirements File
 
 ```bash
 pip install -r requirements.txt
@@ -74,7 +93,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🏗️ Create Django Project
+## 🏗️ 4. Create Django Project {#4-create-django-project}
 
 ```bash
 django-admin startproject myproject
@@ -95,17 +114,10 @@ myproject/
 
 ---
 
-## 📂 Create Django App
-
-Move into project directory:
+## 📂 5. Create Django App {#5-create-django-app}
 
 ```bash
 cd myproject
-```
-
-Create app:
-
-```bash
 python manage.py startapp myapp
 ```
 
@@ -123,9 +135,9 @@ myapp/
 
 ---
 
-## ⚙️ Register App in Project
+## ⚙️ 6. Register App {#6-register-app}
 
-Open `settings.py` and add your app:
+Open `settings.py`:
 
 ```python
 INSTALLED_APPS = [
@@ -142,29 +154,109 @@ INSTALLED_APPS = [
 
 ---
 
-## ▶️ Run Development Server
+## ▶️ 7. Run Development Server {#7-run-development-server}
 
 ```bash
 python manage.py runserver
 ```
 
-Open browser:
-
-👉 [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
+Open browser 👉 [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ---
 
-## 🧩 Migration Basics (Daily Use)
+## 🎨 8. Tailwind CSS Setup {#8-tailwind-css-setup}
 
-Whenever you change models:
+### 8.1 Install Packages
 
-### Create Migrations
+```bash
+pip install django-tailwind[reload]
+```
+
+> If pip fails, upgrade it:
+
+```bash
+python -m ensurepip --upgrade
+python -m pip install --upgrade pip
+```
+
+### 8.2 Initialize Tailwind App
+
+```bash
+python manage.py tailwind init
+```
+
+* Choose template:
+  1️⃣ Standalone (no Node.js)
+  2️⃣ Full (requires Node.js)
+  3️⃣ Legacy v3
+
+### 8.3 Update `settings.py`
+
+```python
+INSTALLED_APPS += ['tailwind', 'theme']
+TAILWIND_APP_NAME = 'theme'
+INTERNAL_IPS = ['127.0.0.1']
+NPM_BIN_PATH = r"C:\Program Files\nodejs\npm.cmd"  # if using Node.js
+```
+
+### 8.4 Install Tailwind Dependencies
+
+```bash
+python manage.py tailwind install
+```
+
+### 8.5 Run Development Server & Tailwind
+
+* First terminal:
+
+```bash
+python manage.py runserver
+```
+
+* Second terminal:
+
+```bash
+python manage.py tailwind start
+```
+
+> Hot reloading enabled with `django-tailwind[reload]`
+
+### 8.6 Enable Browser Reload
+
+```python
+# settings.py
+INSTALLED_APPS += ['django_browser_reload']
+MIDDLEWARE += ['django_browser_reload.middleware.BrowserReloadMiddleware']
+```
+
+```python
+# urls.py
+from django.urls import include, path
+urlpatterns += [path('__reload__/', include('django_browser_reload.urls'))]
+```
+
+---
+
+## 🛠 9. Enable Admin Panel {#9-enable-admin-panel}
+
+```bash
+python manage.py migrate
+python manage.py createsuperuser
+```
+
+* Access admin 👉 [http://127.0.0.1:8000/admin](http://127.0.0.1:8000/admin)
+
+---
+
+## 🧩 10. Migration Basics {#10-migration-basics}
+
+### 10.1 Create Migrations
 
 ```bash
 python manage.py makemigrations
 ```
 
-### Apply Migrations
+### 10.2 Apply Migrations
 
 ```bash
 python manage.py migrate
@@ -172,7 +264,7 @@ python manage.py migrate
 
 ---
 
-## ✅ Common Commands Cheat Sheet
+## ✅ 11. Common Commands Cheat Sheet {#11-common-commands-cheat-sheet}
 
 ```bash
 python manage.py createsuperuser
@@ -182,17 +274,17 @@ python manage.py check
 
 ---
 
-## 📚 Next Steps
+## 📚 12. Next Steps {#12-next-steps}
 
-* Learn Django Models & ORM
+* Django Models & ORM
 * URL Routing & Views
 * Templates & Static Files
-* Django Admin Customization
+* Admin Customization
 * Authentication & Authorization
 
 ---
 
-## 💡 Credits
+## 💡 13. Credits {#13-credits}
 
 Inspired by **Chai Aur Django** learning style ☕
 
