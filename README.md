@@ -22,7 +22,7 @@ A beginner-friendly Django project setup guide covering environment setup, proje
 
 ---
 
-## 📌 <h2 id="1-prerequisites">📌 1. Prerequisites</h2>
+## <h2 id="1-prerequisites">📌 1. Prerequisites</h2>
 
 Make sure you have the following installed:
 
@@ -39,7 +39,7 @@ python --version
 
 ---
 
-## 🚀 <h2 id="2-project-initialization">🚀 2. Project Initialization</h2>
+## <h2 id="2-project-initialization">🚀 2. Project Initialization</h2>
 
 ### 2.1 Create Virtual Environment
 
@@ -65,7 +65,7 @@ source .venv/bin/activate
 
 ---
 
-## 🚀 <h2 id="3-install-dependencies">📦 3. Install Dependencies</h2>
+## <h2 id="3-install-dependencies">📦 3. Install Dependencies</h2>
 
 ### 3.1 Install Django
 
@@ -93,7 +93,7 @@ pip install -r requirements.txt
 
 ---
 
-## 🚀 <h2 id="4-create-django-project">🏗️ 4. Create Django Project</h2>
+## <h2 id="4-create-django-project">🏗️ 4. Create Django Project</h2>
 ```bash
 django-admin startproject myproject
 ```
@@ -113,7 +113,7 @@ myproject/
 
 ---
 
-## 🚀 <h2 id="5-create-django-app">📂 5. Create Django App</h2>
+## <h2 id="5-create-django-app">📂 5. Create Django App</h2>
 
 
 ```bash
@@ -135,7 +135,7 @@ myapp/
 
 ---
 
-## 🚀 <h2 id="6-register-app">⚙️ 6. Register App</h2>
+## <h2 id="6-register-app">⚙️ 6. Register App</h2>
 
 Open `settings.py`:
 
@@ -154,7 +154,7 @@ INSTALLED_APPS = [
 
 ---
 
-## 🚀 <h2 id="7-run-development-server">▶️ 7. Run Development Server</h2>
+## <h2 id="7-run-development-server">▶️ 7. Run Development Server</h2>
 
 ```bash
 python manage.py runserver
@@ -164,7 +164,7 @@ Open browser 👉 [http://127.0.0.1:8000/](http://127.0.0.1:8000/)
 
 ---
 
-## 🚀 <h2 id="8-tailwind-css-setup">🎨 8. Tailwind CSS Setup</h2>
+## <h2 id="8-tailwind-css-setup">🎨 8. Tailwind CSS Setup</h2>
 
 ### 8.1 Install Packages
 
@@ -237,7 +237,7 @@ urlpatterns += [path('__reload__/', include('django_browser_reload.urls'))]
 
 ---
 
-## 🚀 <h2 id="9-enable-admin-panel">🛠 9. Enable Admin Panel</h2>
+## <h2 id="9-enable-admin-panel">🛠 9. Enable Admin Panel</h2>
 
 ```bash
 python manage.py migrate
@@ -248,7 +248,7 @@ python manage.py createsuperuser
 
 ---
 
-## 🚀 <h2 id="10-migration-basics">🧩 10. Migration Basics</h2>
+## <h2 id="10-migration-basics">🧩 10. Migration Basics</h2>
 
 ### 10.1 Create Migrations
 
@@ -264,7 +264,7 @@ python manage.py migrate
 
 ---
 
-## 🚀 <h2 id="11-common-commands-cheat-sheet">✅ 11. Common Commands Cheat Sheet</h2>
+## <h2 id="11-common-commands-cheat-sheet">✅ 11. Common Commands Cheat Sheet</h2>
 
 
 ```bash
@@ -275,7 +275,7 @@ python manage.py check
 
 ---
 
-## 🚀 <h2 id="12-next-steps">📚 12. Next Steps</h2>
+## <h2 id="12-next-steps">📚 12. Next Steps</h2>
 
 
 * Django Models & ORM
@@ -286,7 +286,7 @@ python manage.py check
 
 ---
 
-## 🚀 <h2 id="13-credits">💡 13. Credits</h2>
+## <h2 id="13-credits">💡 13. Credits</h2>
 
 Inspired by **Chai Aur Django** learning style ☕
 
