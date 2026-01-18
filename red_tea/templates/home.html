@@ -1,0 +1,25 @@
+{% extends 'base.html' %}
+
+{% block title %}Home | Chai App{% endblock %}
+
+{% block content %}
+<section class="flex flex-col items-center justify-center text-center py-20">
+
+    <h2 class="text-4xl md:text-5xl font-bold text-gray-800 mb-4">
+        Welcome to Chai Lovers ☕
+    </h2>
+
+    <p class="text-lg text-gray-600 max-w-xl mb-8">
+        Fresh chai, brewed with love — discover flavors that warm your soul.
+    </p>
+
+    <a href="{% url 'chai' %}">
+        <button
+            class="px-8 py-3 bg-amber-600 text-white text-lg font-medium rounded-xl
+                   hover:bg-amber-700 transition shadow-md hover:shadow-lg">
+            Explore Chai
+        </button>
+    </a>
+
+</section>
+{% endblock %}

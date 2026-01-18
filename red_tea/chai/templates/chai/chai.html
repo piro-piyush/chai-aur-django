@@ -1,0 +1,59 @@
+{% extends 'base.html' %}
+
+{% block title %}All Chai{% endblock %}
+
+{% block content %}
+<section class="relative">
+
+    <!-- Back Button -->
+    <a href="javascript:history.back()" 
+       class="inline-flex items-center text-gray-700 hover:text-gray-900 mb-6">
+        <!-- Arrow icon using Unicode -->
+        ← Back
+    </a>
+
+    <h2 class="text-3xl font-bold text-gray-800 mb-8">
+        Our Chai Collection ☕
+    </h2>
+
+    {% if chais %}
+        <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 gap-8">
+            {% for chai in chais %}
+                <div class="bg-white rounded-2xl shadow hover:shadow-lg transition overflow-hidden">
+
+                    {% if chai.image %}
+                        <img
+                            src="{{ chai.image.url }}"
+                            alt="{{ chai.name }}"
+                            class="w-full h-48 object-cover">
+                    {% endif %}
+
+                    <div class="p-5">
+                        <h3 class="text-xl font-semibold text-gray-800 mb-1">
+                            {{ chai.name }}
+                        </h3>
+
+                        <p class="text-sm text-gray-500 mb-2">
+                            {{ chai.get_type_display }}
+                        </p>
+
+                        <p class="text-lg font-bold text-amber-600 mb-4">
+                            ₹ {{ chai.price }}
+                        </p>
+
+                        <a
+                            href="{% url 'chai_description' chai.id %}"
+                            class="inline-block text-amber-600 font-medium hover:underline">
+                            View Details →
+                        </a>
+                    </div>
+
+                </div>
+            {% endfor %}
+        </div>
+    {% else %}
+        <p class="text-gray-500">No chai available right now ☹️</p>
+    {% endif %}
+
+</section>
+{% endblock %}
