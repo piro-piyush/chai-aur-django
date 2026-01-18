@@ -40,7 +40,7 @@ INSTALLED_APPS = [
     'chai',
     'tailwind',
     'theme',
-     'django_browser_reload',
+    'django_browser_reload',
 ]
 
 TAILWIND_APP_NAME = 'theme'
