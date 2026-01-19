@@ -6,20 +6,21 @@
 <section class="max-w-4xl mx-auto">
 
     <!-- Back Button -->
-    <a href="javascript:history.back()" 
+    <a href="javascript:history.back()"
        class="inline-flex items-center text-gray-700 hover:text-gray-900 mb-6">
         ← Back
     </a>
-    
+
+    <!-- Chai Card -->
     <div class="bg-white rounded-2xl shadow-lg overflow-hidden hover:shadow-xl transition-shadow duration-300">
 
         {% if chai.image %}
-            <div class="flex justify-center items-center bg-gray-50 p-6">
-                <img
-                    src="{{ chai.image.url }}"
-                    alt="{{ chai.name }}"
-                    class="w-80 h-80 object-contain rounded-xl">
-            </div>
+        <div class="flex justify-center items-center bg-gray-50 p-6">
+            <img
+                src="{{ chai.image.url }}"
+                alt="{{ chai.name }}"
+                class="w-80 h-80 object-contain rounded-xl">
+        </div>
         {% endif %}
 
         <div class="p-8 text-center">
@@ -41,11 +42,6 @@
             </p>
 
             <div class="flex items-center justify-center gap-4">
-
-                <span class="text-sm font-medium text-gray-700">
-                    ⭐ {{ chai.rating }}
-                </span>
-
                 {% if chai.is_available %}
                     <span class="px-4 py-1 rounded-full bg-green-100 text-green-700 text-sm font-medium">
                         Available
@@ -55,12 +51,47 @@
                         Out of Stock
                     </span>
                 {% endif %}
-
             </div>
 
         </div>
-
     </div>
+
+    <!-- Reviews Section -->
+    {% if chai.reviews.exists %}
+    <div class="mt-10">
+
+        <h3 class="text-2xl font-semibold text-gray-800 mb-6 text-center">
+            Customer Reviews
+        </h3>
+
+        <div class="space-y-4">
+
+            {% for review in chai.reviews.all %}
+            <div class="bg-white rounded-xl shadow p-6">
+
+                <div class="flex items-center justify-between mb-2">
+                    <span class="font-medium text-gray-800">
+                        {{ review.user.username|default:"Anonymous" }}
+                    </span>
+                    <span class="text-sm text-gray-500">
+                        ⭐ {{ review.rating }}/5
+                    </span>
+                </div>
+
+                <p class="text-gray-700">
+                    {{ review.comment }}
+                </p>
+
+                <p class="text-xs text-gray-400 mt-2">
+                    {{ review.created_at|date:"d M Y" }}
+                </p>
+
+            </div>
+            {% endfor %}
+
+        </div>
+    </div>
+    {% endif %}
 
 </section>
 {% endblock %}

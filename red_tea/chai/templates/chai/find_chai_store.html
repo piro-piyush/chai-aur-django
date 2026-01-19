@@ -1,0 +1,92 @@
+{% extends 'base.html' %}
+
+{% block title %}Find Chai Store{% endblock %}
+
+{% block content %}
+<section class="max-w-5xl mx-auto py-8">
+
+    <h1 class="text-3xl font-bold text-gray-800 text-center mb-8">
+        Find Chai Store ☕
+    </h1>
+
+    <!-- Search Form -->
+    <form method="post" class="bg-white rounded-xl shadow p-6 mb-10">
+        {% csrf_token %}
+
+        <div class="flex flex-col md:flex-row items-center gap-4">
+
+            <!-- Type Filter -->
+            <div class="w-full md:w-1/2">
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                    {{ form.type.label }}
+                </label>
+                {{ form.type }}
+            </div>
+
+            <!-- Size Filter -->
+            <div class="w-full md:w-1/2">
+                <label class="block text-sm font-medium text-gray-700 mb-1">
+                    {{ form.size.label }}
+                </label>
+                {{ form.size }}
+            </div>
+
+            <div class="w-full mt-4 md:mt-6">
+                <button
+                    type="submit"
+                    class="w-full bg-amber-600 hover:bg-amber-700 text-white font-semibold py-2 px-4 rounded-lg transition">
+                    Search
+                </button>
+            </div>
+
+        </div>
+    </form>
+
+    <!-- Results -->
+    {% if stores %}
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            {% for store in stores %}
+            <div class="bg-white rounded-xl shadow hover:shadow-lg transition p-6">
+
+                <h3 class="text-xl font-semibold text-gray-800 mb-2">
+                    {{ store.name }}
+                </h3>
+
+                <p class="text-gray-600 mb-2">
+                    📍 {{ store.location }}
+                </p>
+
+                <p class="text-sm text-gray-500 mb-4">
+                    Available Chai:
+                    <span class="font-medium text-gray-700">
+                        {% for chai in store.chai_varieties.all %}
+                            {{ chai.name }} ({{ chai.get_type_display }}{% if not forloop.last %}, {% endif %})
+                        {% endfor %}
+                    </span>
+                </p>
+
+                {% comment %} Optional: Open/Closed status if you add is_open field to ChaiStore {% endcomment %}
+                {% if store.is_open %}
+                    <span class="inline-block px-3 py-1 text-sm rounded-full bg-green-100 text-green-700">
+                        Open Now
+                    </span>
+                {% else %}
+                    <span class="inline-block px-3 py-1 text-sm rounded-full bg-red-100 text-red-700">
+                        Closed
+                    </span>
+                {% endif %}
+
+            </div>
+            {% endfor %}
+
+        </div>
+
+    {% elif stores is not None %}
+        <p class="text-center text-gray-500 mt-10">
+            No stores found for selected chai type or size 😔
+        </p>
+    {% endif %}
+
+</section>
+{% endblock %}
